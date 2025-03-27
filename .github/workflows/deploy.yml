@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -27,10 +29,17 @@ jobs:
         run: npm ci
 
       - name: Build
-        run: npm run build -- --configuration production --base-href=./ --aot --output-hashing=all
+        run: npm run build -- --configuration production --base-href="https://mohamedsallam1234.github.io/ecommerce-final/" --aot --output-hashing=all
+
+      - name: Copy index.html to 404.html
+        run: cp www/index.html www/404.html
+
+      - name: Add .nojekyll file
+        run: touch www/.nojekyll
 
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           folder: www
           branch: gh-pages
+          clean: true

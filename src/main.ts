@@ -4,6 +4,7 @@ import {
   provideRouter,
   withPreloading,
   PreloadAllModules,
+  withHashLocation,
 } from '@angular/router';
 import {
   IonicRouteStrategy,
@@ -19,6 +20,10 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: LocationStrategy, useClass: HashLocationStrategy },
     provideIonicAngular(),
-    provideRouter(routes, withPreloading(PreloadAllModules)),
+    provideRouter(
+      routes,
+      withPreloading(PreloadAllModules),
+      withHashLocation()
+    ),
   ],
 });

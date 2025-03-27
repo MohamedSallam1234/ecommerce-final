@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <title>Sneakers</title>
 
-    <base href="./" />
+    <base href="/" />
 
     <meta name="color-scheme" content="light dark" />
     <meta
@@ -19,6 +19,18 @@
     <!-- add to homescreen for ios -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <!-- Don't use Jekyll for GitHub Pages -->
+    <script>
+      // Fix for GitHub Pages 404 error - handle route manually
+      (function () {
+        const redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+        }
+      })();
+    </script>
   </head>
 
   <body>

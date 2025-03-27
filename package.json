@@ -10,7 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "deploy": "ng build --configuration production --base-href=\"./\" --aot --output-hashing=all && npx angular-cli-ghpages --dir=www --no-silent"
+    "deploy": "ng build --configuration production --base-href=\"https://mohamedsallam1234.github.io/ecommerce-final/\" --aot --output-hashing=all && cp www/index.html www/404.html && touch www/.nojekyll && npx angular-cli-ghpages --dir=www --no-silent"
   },
   "private": true,
   "dependencies": {
