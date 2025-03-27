@@ -1,0 +1,34 @@
+<div class="gallery-container">
+  <div class="main-image" (click)="showLightbox()">
+    <img
+      [src]="images[selectedIndex()]"
+      [alt]="'Product image ' + (selectedIndex() + 1)"
+    />
+
+    <button
+      class="nav-button prev"
+      (click)="previousImage(); $event.stopPropagation()"
+    >
+      <img src="assets/icon/icon-previous.svg" alt="Previous" />
+    </button>
+
+    <button
+      class="nav-button next"
+      (click)="nextImage(); $event.stopPropagation()"
+    >
+      <img src="assets/icon/icon-next.svg" alt="Next" />
+    </button>
+  </div>
+
+  <div class="thumbnails">
+    @for (thumbnail of thumbnails; track $index) {
+    <div
+      class="thumbnail"
+      [class.active]="$index === selectedIndex()"
+      (click)="selectImage($index)"
+    >
+      <img [src]="thumbnail" [alt]="'Thumbnail ' + ($index + 1)" />
+    </div>
+    }
+  </div>
+</div>

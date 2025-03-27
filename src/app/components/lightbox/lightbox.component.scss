@@ -1,0 +1,139 @@
+.lightbox-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--black-75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease;
+}
+
+.lightbox-container {
+  max-width: 650px;
+  padding: 2rem;
+  position: relative;
+}
+
+.close-button {
+  position: absolute;
+  top: -1rem;
+  right: 5.5rem;
+  color: white;
+  cursor: pointer;
+  z-index: 2001;
+  transition: all 0.2s ease;
+
+  img {
+    width: 25px;
+    height: 25px;
+    filter: brightness(0) invert(1);
+    transition: all 0.3s ease;
+  }
+
+  &:hover img {
+    filter: invert(57%) sepia(20%) saturate(5793%) hue-rotate(348deg)
+      brightness(100%) contrast(101%);
+  }
+}
+
+.main-image {
+  position: relative;
+  width: 90%;
+  aspect-ratio: 1 / 1;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.thumbnails {
+  display: flex;
+  gap: 2rem;
+  margin-left: 2.5rem;
+}
+
+.thumbnail {
+  width: 90px;
+  height: 90px;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: border-color 0.3s ease;
+  background-color: white;
+  border: none;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.3s ease;
+  }
+
+  &:hover img {
+    opacity: 0.5;
+  }
+
+  &.active {
+    border-color: var(--primary-orange);
+
+    img {
+      opacity: 0.5;
+    }
+  }
+}
+
+.nav-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  img {
+    width: 12px;
+    height: 15px;
+  }
+
+  &:hover {
+    img {
+      filter: invert(57%) sepia(20%) saturate(5793%) hue-rotate(348deg)
+        brightness(100%) contrast(101%);
+    }
+  }
+
+  &.prev {
+    left: 20px;
+  }
+
+  &.next {
+    right: 20px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

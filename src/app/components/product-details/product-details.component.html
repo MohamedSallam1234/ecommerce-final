@@ -1,0 +1,57 @@
+@if (product()) {
+<div class="product-container">
+  <div class="product-gallery">
+    <app-image-gallery
+      [images]="product()!.images"
+      [thumbnails]="product()!.thumbnails"
+      (openLightbox)="openLightbox($event)"
+    >
+    </app-image-gallery>
+  </div>
+
+  <div class="product-info">
+    <h3 class="company-name">{{ product()!.company }}</h3>
+    <h1 class="product-name">{{ product()!.name }}</h1>
+    <p class="product-description">{{ product()!.description }}</p>
+
+    <div class="price-container">
+      <div class="current-price">
+        <span class="price">${{ product()!.price.toFixed(2) }}</span>
+        <span class="discount-badge">{{ product()!.discount }}%</span>
+      </div>
+      <div class="original-price">
+        ${{ product()!.originalPrice.toFixed(2) }}
+      </div>
+    </div>
+
+    <div class="actions">
+      <div class="quantity-selector">
+        <button class="quantity-btn" (click)="decrementQuantity()">
+          <img src="assets/icon/icon-minus.svg" alt="Minus" />
+        </button>
+        <span class="quantity">{{ quantity() }}</span>
+        <button class="quantity-btn" (click)="incrementQuantity()">
+          <img src="assets/icon/icon-plus.svg" alt="Plus" />
+        </button>
+      </div>
+
+      <button
+        class="add-to-cart-btn"
+        (click)="addToCart()"
+        [disabled]="quantity() === 0"
+      >
+        <img src="assets/icon/icon-cart.svg" alt="Cart" class="cart-icon" />
+        Add to cart
+      </button>
+    </div>
+  </div>
+</div>
+} @if (showLightbox() && product()) {
+<app-lightbox
+  [images]="product()!.images"
+  [thumbnails]="product()!.thumbnails"
+  [initialIndex]="lightboxInitialIndex()"
+  (close)="closeLightbox()"
+>
+</app-lightbox>
+}

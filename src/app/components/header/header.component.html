@@ -1,0 +1,42 @@
+<div class="header-container">
+  <div class="header-left">
+    <button class="menu-button" (click)="toggleMenu()">
+      <img src="assets/icon/icon-menu.svg" alt="Menu" />
+    </button>
+    <div class="logo" [routerLink]="['/']">
+      <img src="assets/icon/logo.svg" alt="Sneakers" />
+    </div>
+    <div class="nav-links" [class.show-menu]="isMenuOpen()">
+      <div class="close-menu" (click)="toggleMenu()">
+        <img src="assets/icon/icon-close.svg" alt="Close" />
+      </div>
+      <a class="nav-link" href="#">Collections</a>
+      <a class="nav-link" href="#">Men</a>
+      <a class="nav-link" href="#">Women</a>
+      <a class="nav-link" href="#">About</a>
+      <a class="nav-link" href="#">Contact</a>
+    </div>
+  </div>
+
+  <div class="header-right">
+    <div class="cart-icon" (click)="toggleCart()">
+      <img src="assets/icon/icon-cart.svg" alt="Cart" />
+      @if (cartService.cartCount() > 0) {
+      <div class="cart-count">
+        {{ cartService.cartCount() }}
+      </div>
+      }
+    </div>
+    <div class="avatar-container">
+      <img
+        src="assets/images/image-avatar.png"
+        alt="User avatar"
+        class="avatar"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="cart-dropdown" [class.show-cart]="isCartOpen()">
+  <app-cart></app-cart>
+</div>
